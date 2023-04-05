@@ -1,19 +1,19 @@
 # Journal-App
 
-Stack use to develope this SPA app
+Stack use to develope this SPA app:  
 
-The project was created using Vite
+The project was created using Vite  
 
 Frontend:
-    Rect18 + Hooks
-    Redux + Redux-Toolkik
+    Rect18 + Hooks  
+    Redux + Redux-Toolkik  
     Material UI - HTML - CSS
 
-Backend & Database:
+Backend & Database:  
     Firebase - Firestore Database
 
-Images container:
+Images container:  
     Cloudinary
 
-Testing Tools:
-Jest, React Testing Library
+Testing Tools:  
+    Jest, React Testing Library
