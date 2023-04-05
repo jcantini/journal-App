@@ -1,0 +1,4 @@
+.box-shadow {
+    box-shadow: 0px, 5px, 5px rgba(0,0,0,0.2); 
+    /* 0px en X 5px en Y 5px de spread t color casi translúcido */
+}
