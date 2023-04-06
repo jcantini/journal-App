@@ -4,18 +4,19 @@ import { Google } from "@mui/icons-material";
 import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
 
 
-import { useMemo } from 'react';import { AuthLayout } from '../layout/AuthLayout';
+import { useMemo } from 'react';
+import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
 import { startGoogleSignIn, startLogingEmailPassword } from '../../store/auth';
 
-const formData = { // Lo pondo por fuera xq tengo en useForm un useEffect condifionado con initialForm
-  email: '',       // si lo dejo dentro cada vez que se renderiza el componente reinicia formData que al ser
-  password: ''  // un objeto tiene una dirección nueva y entraría en un loop xq siempre es distinta la 
-};              // dirección por lo que el useEffect entra en loop
+const formData = { // Lo pongo por fuera xq tengo en useForm un useEffect condifionado con initialForm
+  email: '',       // si lo dejo adentro cada vez que se renderiza el componente reinicia formData que al ser
+  password: ''     // un objeto tiene una dirección nueva y entraría en un loop xq siempre es distinta la 
+};                 // dirección que produce que el useEffect entra en loop
 
 export const LoginPage = () => {
 
-  // Del store, accedo al State para recuperar status (ver si está autenticado) y errorMedssage
+  // Accedo al store para recuperar status (para ver si está autenticado) y errorMessage
   const { status, errorMessage } = useSelector( state => state.auth ); 
 
   const dispatch = useDispatch();
