@@ -36,7 +36,7 @@ export const NoteView = () => {
 
     useEffect(() => {
         if (messageSaved.length > 0 ) {
-            Swal.fire('Nota actualizada', messageSaved, 'success' );
+            Swal.fire('Note saved', messageSaved, 'success' );
         }
     }, [ messageSaved ]);
 
@@ -90,7 +90,7 @@ export const NoteView = () => {
                 color="primary" sx={{ padding: 2}}
             >
                 <SaveOutlined sx={{ fontSize: 30, mr: 1 }}/>
-                Guardar
+                Save
             </Button>
         </Grid>
         <Grid container>
@@ -126,7 +126,7 @@ export const NoteView = () => {
                 color="error"
             >
                 <DeleteOutline />
-                Borrar
+                Delete
             </Button>
 
         </Grid>

@@ -1,6 +1,7 @@
 ## Journal-App 
 
-The project was created using Vite.  
+The project was created using Vite. It's deployed in Vercel.
+To test this app login with test@gmail.com and 123456 as password.
 
 Stack used to develope this SPA app:  
 

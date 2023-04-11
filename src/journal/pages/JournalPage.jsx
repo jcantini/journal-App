@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { IconButton } from "@mui/material";         // que 1ero me queden las importaciones de Materials y despues
+import { IconButton, Tooltip } from "@mui/material";         // que 1ero me queden las importaciones de Materials y despues
 import { AddOutlined } from "@mui/icons-material";  // las de  los iconos
 
 import { JournalLayout } from "../layout/JournalLayout";
@@ -33,16 +33,18 @@ export const JournalPage = () => {
         onClick={ onClickNewNote }
         disabled={ isSaving } 
         size='large'
-         sx={{
+        sx={{
           color: 'white',
           backgroundColor: 'error.main',
           ':hover': { backgroundColor: 'error.main', opacity: 0.9 },
           position: 'fixed',
           right: 50,
           bottom: 50
-         }}
+        }}
       >
-        <AddOutlined sx={{ fontSize: 20 }} />
+        <Tooltip title="Add a Note">
+          <AddOutlined sx={{ fontSize: 20 }} />
+        </Tooltip>
       </IconButton>
 
     </JournalLayout>

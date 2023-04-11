@@ -44,7 +44,7 @@ export const RegisterPage = () => {
   const onSubmit = ( event ) => {
     event.preventDefault();
     setFormSubmitted( true );
-    console.log(isFormValid)
+
     if ( !isFormValid ) return; // Si el form tiene algún error no creo al usuario
 
     dispatch( startCreatingUserWithEmailPassword(formState) ); // Llamo a la función en el thunk y le paso todo el state

@@ -94,7 +94,6 @@ export const startUploadingFiles = ( files = [] ) => {
         const photosUrls = await Promise.all( fileUploadPromises );
 
         dispatch ( setPhotosToActiveNote( photosUrls ) )
-        console.log(photosUrls);
     }
 }  
 
@@ -112,8 +111,7 @@ export const startDeletingNote = ( files = [] ) => {
             await deleteDoc( docRef ); // Hago el delete del docuento ( nota ) no devuelve nada
 
             // Eliminada de FireStore hay que eliminarla del store
-            console.log('Thunk id', note.id);
-            dispatch(  deleteNoteById( note.id )); // disparo la action para actualizar el cambio en la nota en el Sidebar 
+              dispatch(  deleteNoteById( note.id )); // disparo la action para actualizar el cambio en la nota en el Sidebar 
 
             // Eliminar la imagenes de Cloudinary. En realidad esto hay que hacerlo desde el backend usando el 
             // SDK de Cloudinary. Desde el lado del front no puedo hacerlo xq no puedo mandarle al SDK el api key y el
