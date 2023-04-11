@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DeleteOutline, SaveOutlined, UploadOutlined } from "@mui/icons-material";
-import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
+import { Button, Grid, IconButton, TextField, Tooltip, Typography } from "@mui/material";
 import  Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css' // es el estilo que va a usar sweetalert2
 
@@ -75,15 +75,15 @@ export const NoteView = () => {
                 onChange={ onFileInputChange }
                 style={{ display: 'none'}}    
             /> 
-
-            <IconButton
-                color="primary"
-                disabled={ isSaving }
-                onClick={ () => fileInputRef.current.click() }  // Simulo un click en el input
-            >
+            <Tooltip title="Load images"> 
+                <IconButton
+                    color="primary"
+                    disabled={ isSaving }
+                    onClick={ () => fileInputRef.current.click() }  // Simulo un click en el input
+                >
                     <UploadOutlined/>
-            </IconButton>
-
+                </IconButton>
+            </Tooltip>
             <Button 
                 disabled= { isSaving }
                 onClick={ onSaveNote }
@@ -140,4 +140,6 @@ export const NoteView = () => {
 
 // variant="filled" es para que lo muestre en gris
 // fullWidth toma todo el ancho
+
+// <Tooltip title="Load images"> {/* Texto que se muestra cuando hago hover sobre el icono */}
 
