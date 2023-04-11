@@ -3,7 +3,7 @@
 The project was created using Vite.  
 It's deployed in Vercel and can be access from:  
 
-[Journal-app](journal-app-phi.vercel.app)  
+[Journal-app](https://journal-app-phi.vercel.app/)  
 
 To test the app login with test@gmail.com and 123456 as password.
 
