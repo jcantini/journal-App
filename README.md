@@ -1,8 +1,11 @@
 ## Journal-App 
 
 The project was created using Vite.  
-It's deployed in Vercel as journal-app.vercel.app  
-To test this app login with test@gmail.com and 123456 as password.
+It's deployed in Vercel and can be access from:  
+
+[Journal-app](journal-app-phi.vercel.app)  
+
+To test the app login with test@gmail.com and 123456 as password.
 
 Stack used to develope this SPA app:  
 
