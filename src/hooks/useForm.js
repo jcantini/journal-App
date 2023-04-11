@@ -1,5 +1,5 @@
-// Este es un mi custom hook que sirve para usarlo como un template de un formulario con inputs
-// En este caso le agrego las validaciones de los campos en forma dinámica
+// Este es un mi custom hook que sirve para usarlo como un template de un formulario con inputs.
+// Esta version agrega las validaciones de los campos en forma dinámica.
 
 import { useEffect, useMemo, useState } from "react";    
 

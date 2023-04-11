@@ -8,16 +8,16 @@ import { FirebaseAuth } from "../firebase/config";
 import { login, logout } from "../store/auth";
 import { startLoadingNotes } from "../store/journal";
 
-
+// Creo un custom hook para 
 export const useCheckAuth = () => {
 
     const status = useSelector( state => state.auth ); // (2) 
     const dispatch = useDispatch(); // Para poder disparar actions
   
-    // (1) Mantener el estado si hay un refresh del navegador
-      useEffect(() => {
-          onAuthStateChanged( FirebaseAuth, async(user) => {
-              if ( !user ) return dispatch( logout() );
+    // (1) 
+    useEffect(() => { // lo uso para mantener el estado si hay un refresh del navegador
+        onAuthStateChanged( FirebaseAuth, async (user) => {
+            if ( !user ) return dispatch( logout() );
 
               const { uid, email, displayName, photoURL } = user;
               dispatch( login({ uid, email, displayName, photoURL }))
@@ -25,18 +25,18 @@ export const useCheckAuth = () => {
       })
     }, []);
 
-    return status 
+    return status  // Devuelvo cual es el estado del usuario
   
 }
 
 // (1) 
-// Para que no se me borre mi state y mi login si recargo el navegador, mientras que no hice el logout por
-// más que recarge, sigo logueado en firebase. entonces lo que hago es usando un useEffect, Llamo a una 
-// función de Firebase que me indica si hubo un cambio en el estado de la autenticación. Esta función
-// regresa un observable que significa que cada vez que el estado de la autenticación cambie, la función 
-// se va a volver a disparar. de 2do argumento lleva un callback con lo que quiero ejecutar. Este callback
-// recibe como argumento lo que genera el 1er argumento que sería el user si es que se encuentra logueado.
-// Si el usuario está logueado en firebase, le disparo un login en la app y si no lo está, disparo un logout.
-// Esto también me va a servir para la autenticación de las rutas si el usuario está o no logueado.
+// Si recargo el navegador quiero evitar que se borre el state con toda la info del usuario logueado. 
+// Uso para esto un useEffect se dispara una sola vez. La función de Firebase onAuthStateChanged que indica si 
+// hubo un cambio en el estado de la autenticación. Regresa un observable que significa que cada vez que el 
+// estado de la autenticación cambie, la función se va a volver a disparar. El 1er argumento me devuelve un user
+// si me encuentro loguedo en firestore. El 2do argumento es un callback que recibe ese user como argumento.
+// Si el usuario se encuentre logueado me devuelve toda su info que uso para hacer el dispatch del login y 
+// cargar sus notas. Si no está logueado disparo un logout.
+// Esto también me va a servir para la autenticación de las rutas para ver si el usuario está o no logueado.
 
 // (2) tomo del state cuyo name es auth y como solo me traigo el status no es nececsario desestructurar.
