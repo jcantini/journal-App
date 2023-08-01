@@ -1,29 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom'; // le pongo un alias para que n ode conflicto con el                                               // Link de Mui
-import { Google } from "@mui/icons-material";
+import { Link as RouterLink } from 'react-router-dom'; 
+import { Google } from "@mui/icons-material"; // importo el logo de google
 import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material";
-
 
 import { useMemo } from 'react';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
 import { startGoogleSignIn, startLogingEmailPassword } from '../../store/auth';
 
-const formData = { // Lo pongo por fuera xq tengo en useForm un useEffect condifionado con initialForm
+const formData = { // Lo pongo por fuera xq tengo en useForm y un useEffect condifionado con initialForm
   email: '',       // si lo dejo adentro cada vez que se renderiza el componente reinicia formData que al ser
   password: ''     // un objeto tiene una dirección nueva y entraría en un loop xq siempre es distinta la 
 };                 // dirección que produce que el useEffect entra en loop
 
 export const LoginPage = () => {
 
-  // Accedo al store para recuperar status (para ver si está autenticado) y errorMessage
+  // Accedo al store para recuperar el status (para ver si está autenticado) y errorMessage
   const { status, errorMessage } = useSelector( state => state.auth ); 
 
   const dispatch = useDispatch();
 
   const { email, password, onInputChange } = useForm(formData); // Establezco el estado inicial
 
-  // Memorizo si el usuario se esta autenticado y se ejecuta solamente cuando cambie status
+  // Memorizo si el usuario se esta autenticado y se ejecuta solamente cuando cambie el status
   // Es para usarlo en los botones para deshabilitarlos mientras se está autenticando para que no se 
   // puedan volver a clickear mientras se autentica.
   const isAuthenticating = useMemo( () => status === 'checking', [status])
@@ -40,10 +39,11 @@ export const LoginPage = () => {
 
   return (
       <AuthLayout title='Login'>
-        <form onSubmit={ onSubmit }
+        <form onSubmit={ onSubmit } // Este form va dentro de la caja definida en el Layout
               className='animate__animated animate__fadeIn animate__faster'>
           <Grid container>
-              <Grid item xs={12} sx={{ mt: 2}}> 
+              <Grid item xs={12} // para pantallas xs toma 12 cols si no toma el tamaño standars para un Textfield 
+                         sx={{ mt: 2 }}> 
                 <TextField 
                   label="email" 
                   type="email" 
@@ -55,7 +55,8 @@ export const LoginPage = () => {
                 />
               </Grid>
 
-              <Grid item xs={12} sx={{ mt: 2}}>
+              <Grid item xs={12} 
+                         sx={{ mt: 2}}>
                 <TextField 
                   label="Password" 
                   type="password" 
@@ -81,7 +82,7 @@ export const LoginPage = () => {
                   </Button>
                 </Grid>
 
-                <Grid item xs={12} sm={6}> {/*En pantallas chicas toma 12 todo el ancho en medianas la 1/2 */}
+                <Grid item xs={12} sm={6}> {/*En pantallas chicas toma 12 todo el ancho en medianas y superiores la 1/2 */}
                   <Button variant='contained' fullWidth onClick={onGoogleSignIn} disabled= {isAuthenticating}>
                     <Google/>
                       <Typography sx={{ ml: 1 }}>Google</Typography>
@@ -90,9 +91,9 @@ export const LoginPage = () => {
 
               </Grid>
 
-              <Grid container direction='row' justifyContent='end' sx={{ mt:2 }}>
-                <Link component={ RouterLink } color='inherit' to="/auth/register">
-                  Crear una cuenta
+              <Grid container direction='row' justifyContent='end' sx={{ mt:2 }}> 
+                <Link component={ RouterLink } color='inherit' to="/auth/register">  
+                  Create new account
                 </Link>
                 
               </Grid>
@@ -104,26 +105,24 @@ export const LoginPage = () => {
   )
 }
 
-// Grid es un componente de Material UI que sería cómo un div pero tiene una sere de propiedades. Maneja
-// 12 columnas como Bootstrap
-// container que significa que va a ser un  contenedor de elemtos
-// spacing para indicar el espacio entre los hijos, los items.
-// direction equivale al display:flex
+/*
+ mb es margin botton
+ 
+Tamaños de pantalla: Mui trabaja con la terminologia de Movil first o sea que usa 1ero lo que tengo definido 
+para xs y esto lo replica para los otros tamaños a menos que tenga definido otro valor para otro tamaño.
+El orden para definir un tamaño en particular es xs, sm, md y lg. 
+Por ej si defino item xs={12} sm={6} toma todo el tamaño posible si es xs y la mitad si es sm, md o lg 
+También para este cado si tengo dentro del container 2 elementos con esta configuración para pantallas
+sm, md y lg cómo ocupan la mitad se van a posicionar uno al lado del otro
 
-// sx es style extended que nos permite tener acceso al theme que definimos con ThemeProvider
-// minHeight:'100vh' 100% view height osea todo el tamaño de pantalla disponible.
-// backgroungColor: 'primary,main' toma el color de mi theme que está establecido como primary.main en
-// purpleTheme.js
+Typography para escribir un texto en lugar de hacer <div>Journal</div> debo reemplazar el div por Typography 
+para que tome el font de Roboto por default en el html Typography se convierte en un <p></p> si necesito que
+se convierta en otra etiqueta por ej en un h1 con las propiedades de h1 debo agregarle varient='h1'
 
-// mb es margin botton
-// xs (for phones - screens less than 768px wide) 
-// sm (for tablets - screens equal to or greater than 768px wide) 
-// md (for small laptops - screens equal to or greater than 992px wide) 
-// lg (for laptops and desktops - screens equal to or greater than 1200px wide)
+RouterLink: 
+En 'crear una cuenta' tengo que hacer un link a la página de registro.
+Necesito usar el link de React Router pero también necesito indicarle a Mui como quiero que se muestre como
+link y para esto necesito usar el Link de Mui. Ambos se llama igual y esto no está permitido por lo que al 
+Link de React-Router lo renombre como RouterLink. Al Link de Mui le doy la funcionalidad usando RouterLink.
 
-// (1) En 'crear una cuenta' tengo que hacer un link, necesito usar el link de React Router pero también
-// necesito indicarle a Mui como quiero que se muestre el link. Tengo que usar 2 links que ese componente
-// Agrego el Link de Mui e importo Link de React-Router pero le pongo un alias xq los dos no se pueden llamar
-// Link. En el Link de Mui que si bien indico a donde quiero navegar pero solo estoy definiendo el estilo.
-// La funcionalidad se la doy agregando  RouterLink mi Link del router
-
+*/

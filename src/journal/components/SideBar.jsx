@@ -44,7 +44,15 @@ export const SideBar = ( { drawerWidth = 240 }) => { // recibo el tamaño que va
 }
 
 
-// Drawer se llama en Mui a un sidebar. Como propiedades en variant puedo ponerle temporary si lo quiero 
-// ocultar o mostrar de forma incondicional puedo ponerle onClose para ejecutar algo cuando lo cierro, etc
-// tiene muchas propiedades
-// Component='nav' es como html indico que va a ser una barra de navegación
+/*
+Drawer se llama en Mui a un sidebar. Como propiedades en variant puedo ponerle temporary si lo quiero 
+ocultar o mostrar de forma incondicional puedo ponerle onClose para ejecutar algo cuando lo cierro, etc
+tiene muchas propiedades para verlas en la documentación
+Component='nav' es como html indico que va a ser una barra de navegación
+
+'& .MuiDrawer-paper': poniendo entre '' estoy creando una propiedad computada a la que le paso valores
+Toolbar
+
+ <Divider/> crea una línea de separación
+
+*/

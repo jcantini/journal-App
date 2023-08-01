@@ -16,9 +16,20 @@ const formData = {
   displayName: '',
 };
 
+const ValidateEmail = (input = '' ) => { 
+  var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  if (input.match(validRegex)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 const formValidations = {
-  email: [ (value) => value.includes('@'), 'email must contain an @' ],
-  password: [ (value) => value.length >= 6, 'password min length is 6 characterss.'],
+// email: [ (value) => value.includes('@'), 'email must contain an @' ],
+  email: [ (value) => ValidateEmail(value), 'invalid email address' ],
+  password: [ (value) => value.length >= 6, 'password min length is 6 characters.'],
   displayName: [ (value) => value.length >= 1, 'Name is required.'],
 };
 
@@ -34,7 +45,7 @@ export const RegisterPage = () => {
   // Defino una constante para ver si se está haciendo la autenticación poder deshabilitar el botón
   // de Crear Cuenta
   const isCheckingAuthentication = useMemo( () => status === 'checking', [status] );
-  
+
   // Establezco el estado inicial. Es otra forma de hacerlo a como lo hice para LoginPage
   const { 
     formState, displayName, email, password, onInputChange, 
@@ -107,7 +118,7 @@ export const RegisterPage = () => {
 
                 <Grid item xs={12}> 
                   <Button type='submit' variant='contained' fullWidth disabled={ isCheckingAuthentication }>
-                    Create Account
+                    CREATE ACCOUNT
                   </Button>
                 </Grid>
 
@@ -129,21 +140,27 @@ export const RegisterPage = () => {
   )
 }
 
-// Tengo que indicar si hay un error y mostrar un texto con el mensaje de error. Mui tiene dos propiedades
-// error={ true } pone el texto en rojo. Lo manejo con true o false y helperText con el texto de error que 
-// quiero mostrar. 
-// La mejor manera de manejarlo es desde mi custom hook. Las validaciones que necesito hacer las mando en 
-// un objeto personalizado que llame formValidations. Es un objeto donde cada propiedad coincide con un 
-// nombre de campo de los que quiero validar, uso el mismo nombre que puse en el name del campo. 
-// Este objeto va a tener una propiedad por cada campo que quiero validar.
-// Como valor de la propiedad tengo un array con dos valores. El 1ero es una función que recibe como argumento
-// el valor que tiene el campo y la función que le aplico para validarlo. La función puede ser tan cpmpleja
-// cómo sea necesario. El 2do argumento el el texto del mensaje de error si la validación no se cumple. 
-// Este objeto lo paso como 2do argumento del useForm. Debo agregarlo este 2do argumento en useForm.js.
+/*
 
-//  error={ !!displayNameValid } la doble negación es para convertir null en un valor booleano
+ Tengo que indicar si hay un error y mostrar un texto con el mensaje de error. Mui tiene dos propiedades
+ error={ true } pone el texto en rojo. Lo manejo con true o false y helperText con el texto de error que 
+ quiero mostrar. 
+ La mejor manera de manejarlo es desde mi custom hook. Las validaciones que necesito hacer las mando en 
+ un objeto personalizado que llame formValidations. Es un objeto donde cada propiedad coincide con un 
+ nombre de campo de los que quiero validar, uso el mismo nombre que puse en el name del campo. 
+ Este objeto va a tener una propiedad por cada campo que quiero validar.
+ Como valor de la propiedad tengo un array con dos valores. El 1ero es una función que recibe como argumento
+ el valor que tiene el campo y la función que le aplico para validarlo. La función puede ser tan cpmpleja
+ cómo sea necesario. El 2do argumento el el texto del mensaje de error si la validación no se cumple. 
+ Este objeto lo paso como 2do argumento del useForm. Debo agregarlo este 2do argumento en useForm.js.
+  
+ error es una propiedad de MUI que si toma el valor true cambia el color del campo a rojo
+  error={ !!displayNameValid } la doble negación es para convertir null en un valor booleano
+  La propiedad helpertext es un hint, un texto de ayuda. Me escribe el mensaje que le paso, debajo del campo. 
+  Pero hay que hacerlo condicionado para que no se muestre si no hay error.
 
-// <Alert></Alert> es un componente de Mui
+ <Alert></Alert> es un componente de Mui
 
 
 
+*/

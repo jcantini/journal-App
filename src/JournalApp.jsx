@@ -5,9 +5,10 @@ import { AppTheme } from "./theme"
 export const JournalApp = () => {
   return (
       <AppTheme> 
-        <AppRouter />
+        <AppRouter /> 
       </AppTheme>
   )
 }
 
-// envuelvo a AppRouter con AppTheme para aplicarle el theme a toda la app
+// AppThemeves un high order component al que le paso como children AppRouter. De esta forma 
+// el theme se le va a aplicar a toda la app

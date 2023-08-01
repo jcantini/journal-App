@@ -27,7 +27,7 @@ export const authSlice = createSlice({
             state.photoURL = null;
             state.errorMessage = payload?.errorMessage; // si viene payload tomo el errorMessage
         },
-        checkingCredentials: (state) => { // para chequear si el usuario se esta logueando o está logueado
+        checkingCredentials: (state) => { // para chequear si el usuario se esta logueando o ya está logueado
             state.status = 'checking'
         },
     }

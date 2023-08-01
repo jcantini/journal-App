@@ -47,12 +47,27 @@ export const NavBar = ({ drawerWidth = 240 }) => {
   )
 }
 
-// Uso AppBar que es algo que viene en Mui. Represnta una caja contenedora donde voy a ponerle cosas encima
-// position='fix' siempre va a estar en una posición fija
+/* 
+MUI no dispone de una Navbar preconfigurada para usar. Para crear el navbar se necesitan 2 componentes de Mui: 
+AppBar y Toolbar.
+AppBar representa una caja contenedora a la que le voy a ponerle cosas encima no viene con ningúna c
+configuración previa.
 
-// drawerWidth viene como prop desde JournalLayout, que es el ancho del sidebar. 
-// A AppBar solo para pantallas sm hago el cálculo de que el largo del navbar sea igual al 100% del ancho 
-// menos drawerWidth que es el ancho de mi sidebar y le defino un margin left del ancho del sidebar así AppBar 
-// no se va encima del Sidebar. 
-// ml margin left, solo para pantallas sm que la separación sea del tamaño del drawerWith. Las xs ya no les
-// reservo el espacio el nvbar ocupa todo el ancho.
+position='fixed' siempre va a estar en una posición fija
+A AppBar solo para pantallas sm hago el cálculo de que el largo del navbar sea igual al 100% 
+del ancho menos drawerWidth que es el ancho de mi sidebar y le defino un margin left de el 
+ancho del sidebar así AppBar no se va encima del Sidebar. 
+ml margin left, para pantallas sm que la separación sea del tamaño del drawerWith. Para el resto 
+toma el tamaño de defautl. A las xs ya no les reservo el espacio el navbar ocupa todo el ancho.
+Dentro de Navbar llamo a Toolbar que agrega un padding a la derecha y a la izq del navbar. Dentro 
+del Toolbar agrego lo que quiero que contenga el navbar.
+
+Toolbar es un componente de Mui viene con un padding por izquierda y por derecha para que no quede pegado
+a AppBar.
+drawerWidth viene como prop desde JournalLayout. Indica el ancho del sidebar. 
+
+
+
+
+
+*/

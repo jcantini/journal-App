@@ -5,7 +5,7 @@ It's deployed in Vercel and can be access from:
 
 [Journal-app](https://journal-app-phi.vercel.app/)  
 
-To test the app login with test@gmail.com and 123456 as password.
+To test the app login with mara@gmail.com and 123456 as password.
 
 Stack used to develope this SPA app:  
 
